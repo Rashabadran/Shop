@@ -20,7 +20,8 @@ app.use('/allballoons',require("./routes/balloonsRoutes"));
 app.use("/contactus", require("./routes/contactusRoutes"));
 app.use("/orders", require("./routes/orderRoutes"));
 app.use("/hero", require("./routes/heroImageRoutes"));
-
+app.use("/decorationCat", require("./routes/decorationCategoryRoutes"));
+app.use("/decoration", require("./routes/videoImagesDecorationRoutes"));
 
 const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Listening on port ${port}...`));
