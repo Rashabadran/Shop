@@ -20,14 +20,6 @@ email:{
    required:[true,'please add a password '],
     },
 
- phone :{
-        type:Number,
-        required:[true,'please add a phone number '],
-            },
-address :{
-    type:String,
-    required:[true,'please add a address '],
-                    },
 
                      
     

@@ -9,7 +9,7 @@ router.get('/:id', getCategoryById)
 
 
 
-router.post('/', catupload.single('image'),setCategory)
+router.post('/',setCategory)
 
 
 

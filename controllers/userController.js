@@ -7,10 +7,10 @@ const User=require ('../Models/userModel')
 
 
 const registerUser = async (req, res) => {
-    const { name, email, password,phone,address,role } = req.body;
+    const { name, email, password,role } = req.body;
   
     // Check if all required fields are present
-    if (!name || !email || !password||!phone||!address||!role) {
+    if (!name || !email || !password||!role) {
       if(!name){
         return res.send({ message: "Please provide all required the name." });
       }
@@ -20,12 +20,7 @@ const registerUser = async (req, res) => {
       else if(!password){
         return res.send({ message: "Please provide password." });
       }
-      else if (!phone){
-        return res.send({ message: "Please provide phone" });
-      }
-      else if(!address){
-        return res.send({ message: "Please provide address" });
-      }
+      
       else if (!role){
         return res.send({ message: "Please provide role" });
       }
@@ -47,10 +42,10 @@ const registerUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, salt);
   
       // Create and save the new user
-      const newUser = new User({ name, email, password: hashedPassword,phone,address,role });
+      const newUser = new User({ name, email, password: hashedPassword,role });
       const savedUser = await newUser.save();
   
-      res.send({ message: "User created successfully." ,token:generatetoken(savedUser.id),role, _id: savedUser.id,phone,address}
+      res.send({ message: "User created successfully." ,token:generatetoken(savedUser.id),role, _id: savedUser.id}
       
       );
     } catch (error) {
@@ -68,10 +63,10 @@ const loginUser=async(req,res)=>{
     
     if(user &&(await bcrypt.compare(password,user.password))){
         return   res.json ({
+           message: "User exists.",
             _id:user.id,
             email:user.email,
-            phone:user.phone,
-            address:user.address,
+          
             role:user.role,
             token:generatetoken(user.id)
       
@@ -105,6 +100,35 @@ const getUser=async (req,res)=>{
 }
 
 
+const getAllUser=async (req,res)=>{
+    
+
+  try {
+    const findUser = await User.find();
+    res.send(findUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+
+
+
+}
+const getUserByEmail=async (req,res)=>{
+    
+
+  try {
+    const emaill = await User.findById(req.email);
+    res.send(emaill,"email exist")
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+
+
+
+}
+
 
 // generator token 
 const generatetoken = (id) => {
@@ -119,4 +143,6 @@ module.exports = {
 registerUser,
 loginUser, 
 getUser,
+getAllUser,
+getUserByEmail
   };

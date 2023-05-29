@@ -76,7 +76,7 @@ const setCategory=async(req,res)=>{
 
 
         const category =await DecorationCategory.create({
-        title:req.body.title,
+        
         
        
         image: {

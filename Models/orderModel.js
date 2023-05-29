@@ -12,19 +12,8 @@ const OrderModel = new Schema(
           ref: "producttables",
           required: [true, "Please include a productTable"],
         },
-        title: {
-          type: String,
-        },
-       
-        color: {
-          type: String,
-        },
-        quantity: {
-          type: Number,
-        },
-        price: {
-          type: Number,
-        },
+        quantity: Number,
+        price: Number
       },
     ],
     payment_type: {

@@ -1,21 +1,12 @@
 const mongoose = require("mongoose");
 
 const CategorySchema =new mongoose.Schema({
-    title:{
+    cattitle:{
         type:String,
         required:true,
     },
     
-    image: {
-        public_id:{
-           type: String,
-           required: true,
-        },
-        url:{
-           type: String,
-           required: true,
-        }
-      },
+    
 })
 
 

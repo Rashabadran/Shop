@@ -21,12 +21,12 @@ router.get("/productbyID/:id",getProductById);
 router.get('/productbyCategory/:category_id',getItemsByCategory);
 
 //getProduct by Category name
-router.get("/productsbyCategoryName/:categoryName", getItemsByCategoryName );
+router.get("/:categoryName", getItemsByCategoryName );
 
 //updatebyID
 router.put('/productUpdate/:id', updateProductById)
 
 //delete
-router.delete('/deleteProduct/:id',deleteProductById)
+router.delete('/product/:id',deleteProductById)
 
 module.exports=router;

@@ -68,7 +68,7 @@ const getCategoryById = async (req, res) => {
 const setCategory=async(req,res)=>{
     
     try{
-      const result = await cloudinary.uploader.upload(req.file.path);
+     
     if(!req.body){
         return res.status(400).json({message:"Error"})
     }
@@ -76,14 +76,9 @@ const setCategory=async(req,res)=>{
 
 
         const category =await CategoryModel.create({
-        title:req.body.title,
+        cattitle:req.body.cattitle,
         
        
-        image: {
-          public_id: result.public_id,
-          url: result.secure_url,
-        },
-    
 
             });
 

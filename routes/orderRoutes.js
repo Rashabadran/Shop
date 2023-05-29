@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const catupload = require("../middleware/catupload");
 const { getOrder } = require("../controllers/orderController");
 const { getAllOrder } = require("../controllers/orderController");
 const { setOrder } = require("../controllers/orderController");

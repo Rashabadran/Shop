@@ -1,9 +1,19 @@
 const asyncHandler = require("express-async-handler");
 const OrderModel = require("../Models/orderModel");
 const producttables = require("../Models/balloonsModel");
+
+const cloudinary = require("cloudinary").v2;
+const path = require("path");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
 const getAllOrder = async (req, res) => {
   try {
-    const orders = await OrderModel.find();
+    const orders = await OrderModel.find().populate("cart.productID");
     res.send(orders);
   } catch (error) {
     res.status(500).send(error);
@@ -12,7 +22,7 @@ const getAllOrder = async (req, res) => {
 
 const getOrder = async (req, res) => {
   try {
-    const order = await OrderModel.findById(req.params.id)
+    const order = await OrderModel.findById(req.params.id).populate(productID);
     if (!order) {
       return res.status(404).send();
     }
@@ -38,12 +48,14 @@ const getOrder = async (req, res) => {
 // };
 
 const setOrder = asyncHandler(async (req, res) => {
+  
   const order = await OrderModel.create({
     cart: req.body.cart,
     payment_type: req.body.payment_type,
     total_price: req.body.total_price,
     phone_number: req.body.phone_number,
     address: req.body.address,
+    
   });
 
   await order.save();

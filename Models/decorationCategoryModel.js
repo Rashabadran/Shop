@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const DecorationCategorySchema =new mongoose.Schema({
-    title:{
-        type:String,
-        required:true,
-    },
+    
     
     image: {
         public_id:{
