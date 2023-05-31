@@ -1,15 +1,6 @@
   
 const CategoryModel = require('../Models/balloonsCategoryModel')
-const cloudinary= require ('cloudinary').v2;
-const path = require("path");
 
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET,
-   
-
-});
 
 // get all category
 const getCategoris = async(req, res) => {
@@ -21,7 +12,7 @@ const categoris = await CategoryModel.find()
 //get by Id
 const getCategoryById = async (req, res) => {
     try {
-      const category = await CategoryModel.findById(req.params.id);
+     
       if (!category) {
         return res.status(404).send();
       }

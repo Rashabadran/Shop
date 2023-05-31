@@ -13,7 +13,8 @@ const OrderModel = new Schema(
           required: [true, "Please include a productTable"],
         },
         quantity: Number,
-        price: Number
+        price: Number,
+        color:String,
       },
     ],
     payment_type: {
